@@ -1,3 +1,4 @@
+// widgets/recipe_card.dart
 import 'package:flutter/material.dart';
 import '../../domain/models/recipe.dart';
 
@@ -5,114 +6,74 @@ class RecipeCard extends StatelessWidget {
   final Recipe recipe;
   final VoidCallback onDelete;
 
-  const RecipeCard({
-    super.key,
-    required this.recipe,
-    required this.onDelete,
-  });
+  const RecipeCard({super.key, required this.recipe, required this.onDelete});
+
+  static const Color primaryBlue = Color(0xFF375FAD);
+  static const Color favoriteRed = Color(0xFFD80050);
 
   @override
   Widget build(BuildContext context) {
-    final totalNutritions = recipe.getTotalNutritions();
-    final fruitNames = recipe.fruits
-            ?.map((f) => f.name)
-            .join(', ') ??
-        'Фрукты загружаются...';
+    final total = recipe.getTotalNutritions();
+    final fruitNames = recipe.fruits?.map((f) => f.name).join(', ') ?? 'Фрукты загружаются...';
 
-    return Card(
-      margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(20),
+        border: Border.all(color: primaryBlue.withOpacity(0.25), width: 1.5),
+        boxShadow: [
+          BoxShadow(color: primaryBlue.withOpacity(0.12), blurRadius: 20, spreadRadius: 2),
+        ],
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(16),
+        padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(
                   child: Text(
                     recipe.name,
-                    style: Theme.of(context).textTheme.titleLarge,
+                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w800, color: Colors.black87),
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.delete_outline),
-                  color: Colors.red,
-                  onPressed: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => AlertDialog(
-                        title: const Text('Удалить рецепт?'),
-                        content: Text('Вы уверены, что хотите удалить рецепт "${recipe.name}"?'),
-                        actions: [
-                          TextButton(
-                            onPressed: () => Navigator.pop(context),
-                            child: const Text('Отмена'),
-                          ),
-                          TextButton(
-                            onPressed: () {
-                              Navigator.pop(context);
-                              onDelete();
-                            },
-                            child: const Text('Удалить', style: TextStyle(color: Colors.red)),
-                          ),
-                        ],
-                      ),
-                    );
-                  },
+                  onPressed: () => _showDeleteDialog(context),
+                  icon: Icon(Icons.delete_outline, color: favoriteRed.withOpacity(0.8)),
+                  splashRadius: 24,
                 ),
               ],
             ),
-            if (recipe.description != null && recipe.description!.isNotEmpty) ...[
+
+            if (recipe.description?.isNotEmpty == true) ...[
               const SizedBox(height: 8),
-              Text(
-                recipe.description!,
-                style: Theme.of(context).textTheme.bodyMedium,
-              ),
+              Text(recipe.description!, style: TextStyle(color: Colors.grey[700], fontSize: 15)),
             ],
-            const SizedBox(height: 12),
-            Text(
-              'Состав: $fruitNames',
-              style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Colors.grey[600],
-                  ),
-            ),
-            const SizedBox(height: 12),
+
+            const SizedBox(height: 16),
+            Text('Состав: $fruitNames', style: TextStyle(color: Colors.grey[600], fontSize: 14)),
+
+            const SizedBox(height: 20),
             Container(
-              padding: const EdgeInsets.all(12),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Theme.of(context).colorScheme.surfaceVariant,
-                borderRadius: BorderRadius.circular(8),
+                color: primaryBlue.withOpacity(0.08),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: primaryBlue.withOpacity(0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text(
-                    'Питательные свойства:',
-                    style: Theme.of(context).textTheme.titleSmall,
-                  ),
-                  const SizedBox(height: 8),
+                  const Text('Питательные свойства', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16)),
+                  const SizedBox(height: 12),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      _buildNutritionItem(
-                        context,
-                        'Калории',
-                        '${totalNutritions.calories.toStringAsFixed(0)}',
-                        'ккал',
-                      ),
-                      _buildNutritionItem(
-                        context,
-                        'Углеводы',
-                        '${totalNutritions.carbohydrates.toStringAsFixed(1)}',
-                        'г',
-                      ),
-                      _buildNutritionItem(
-                        context,
-                        'Белки',
-                        '${totalNutritions.protein.toStringAsFixed(1)}',
-                        'г',
-                      ),
+                      _nutritionItem('Калории', '${total.calories.toStringAsFixed(0)} ккал', Icons.local_fire_department),
+                      _nutritionItem('Углеводы', '${total.carbohydrates.toStringAsFixed(1)} г', Icons.grain),
+                      _nutritionItem('Белки', '${total.protein.toStringAsFixed(1)} г', Icons.fitness_center),
                     ],
                   ),
                 ],
@@ -124,28 +85,40 @@ class RecipeCard extends StatelessWidget {
     );
   }
 
-  Widget _buildNutritionItem(
-    BuildContext context,
-    String label,
-    String value,
-    String unit,
-  ) {
+  Widget _nutritionItem(String label, String value, IconData icon) {
     return Column(
       children: [
-        Text(
-          '$value $unit',
-          style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.bold,
-              ),
+        Row(
+          children: [
+            Icon(icon, size: 18, color: primaryBlue),
+            const SizedBox(width: 6),
+            Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+          ],
         ),
-        Text(
-          label,
-          style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                color: Colors.grey[600],
-              ),
-        ),
+        const SizedBox(height: 4),
+        Text(label, style: TextStyle(color: Colors.grey[600], fontSize: 13)),
       ],
     );
   }
-}
 
+  void _showDeleteDialog(BuildContext context) {
+    showDialog(
+      context: context,
+      builder: (_) => AlertDialog(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        title: const Text('Удалить рецепт?'),
+        content: Text('Рецепт "${recipe.name}" будет удалён навсегда.'),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Отмена')),
+          TextButton(
+            onPressed: () {
+              Navigator.pop(context);
+              onDelete();
+            },
+            child: const Text('Удалить', style: TextStyle(color: favoriteRed)),
+          ),
+        ],
+      ),
+    );
+  }
+}

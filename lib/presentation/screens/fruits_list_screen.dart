@@ -119,14 +119,22 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
             ),
             if (state.activeFilters != null && state.activeFilters!.isNotEmpty)
               ...[
-                const SizedBox(height: 16),
-                ElevatedButton(
+                const SizedBox(height: 28),
+                ElevatedButton.icon(
                   onPressed: () async {
                     ref.invalidate(fruitListProvider);
                     await ref.read(fruitListProvider.notifier).loadFruits();
                     _showSnackBar(context, message: 'Фильтры сброшены');
                   },
-                  child: const Text('Сбросить фильтры'),
+                  label: const Text('Сбросить фильтры', style: TextStyle(fontWeight: FontWeight.bold)),
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF375FAD),
+                    foregroundColor: Colors.white,
+                    padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                    elevation: 10,
+                    shadowColor: const Color(0xFF375FAD).withOpacity(0.5),
+                  ),
                 ),
               ],
           ],
