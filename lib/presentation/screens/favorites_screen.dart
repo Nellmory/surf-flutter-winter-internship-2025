@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/favorite_fruits_provider.dart';
 import '../widgets/fruit_card.dart';
-import '../widgets/loading_item.dart';
 import 'fruit_details_screen.dart';
 
 class FavoritesScreen extends ConsumerStatefulWidget {
@@ -13,6 +12,9 @@ class FavoritesScreen extends ConsumerStatefulWidget {
 }
 
 class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
+  static const Color primaryBlue = Color(0xFF375FAD);
+  static const Color favoriteRed = Color(0xFFD80050);
+
   @override
   void initState() {
     super.initState();
@@ -26,8 +28,17 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
     final state = ref.watch(favoriteFruitsProvider);
 
     return Scaffold(
+      backgroundColor: const Color(0xFFF8FAFF),
       appBar: AppBar(
-        title: const Text('Избранное'),
+        title: const Text(
+          'Избранное',
+          style: TextStyle(fontSize: 28, fontWeight: FontWeight.w900),
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black87,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
+        centerTitle: true,
       ),
       body: _buildBody(state),
     );
@@ -35,7 +46,9 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
 
   Widget _buildBody(FavoriteFruitsState state) {
     if (state.isLoading) {
-      return const Center(child: CircularProgressIndicator());
+      return const Center(
+        child: CircularProgressIndicator(color: primaryBlue),
+      );
     }
 
     if (state.error != null) {
@@ -43,23 +56,16 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(
-              Icons.error_outline,
-              size: 64,
-              color: Colors.grey[400],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              state.error!,
-              textAlign: TextAlign.center,
-              style: TextStyle(color: Colors.grey[600]),
-            ),
-            const SizedBox(height: 16),
-            ElevatedButton(
-              onPressed: () {
-                ref.read(favoriteFruitsProvider.notifier).loadFavorites();
-              },
-              child: const Text('Перезагрузить'),
+            Icon(Icons.sentiment_dissatisfied, size: 80, color: Colors.grey[400]),
+            const SizedBox(height: 20),
+            Text('Не удалось загрузить избранное', style: TextStyle(color: Colors.grey[700], fontSize: 16)),
+            Text(state.error!, style: TextStyle(color: Colors.grey[600]), textAlign: TextAlign.center),
+            const SizedBox(height: 24),
+            ElevatedButton.icon(
+              onPressed: () => ref.read(favoriteFruitsProvider.notifier).loadFavorites(),
+              icon: const Icon(Icons.refresh),
+              label: const Text('Попробовать снова'),
+              style: ElevatedButton.styleFrom(backgroundColor: primaryBlue, foregroundColor: Colors.white),
             ),
           ],
         ),
@@ -70,52 +76,59 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
 
     if (favorites.isEmpty) {
       return Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              Icons.favorite_border,
-              size: 64,
-              color: Colors.grey[400],
-            ),
-            const SizedBox(height: 16),
-            Text(
-              'Вы пока ничего не добавили в избранное',
-              style: TextStyle(color: Colors.grey[600]),
-              textAlign: TextAlign.center,
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Container(
+                padding: const EdgeInsets.all(32),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: favoriteRed.withOpacity(0.1),
+                ),
+                child: Icon(Icons.favorite_border, size: 96, color: favoriteRed.withOpacity(0.6)),
+              ),
+              const SizedBox(height: 32),
+              const Text(
+                'Ваше избранное пока пусто',
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 12),
+              Text(
+                'Нажмите на сердечко на карточке фрукта,\nчтобы добавить его сюда',
+                style: TextStyle(color: Colors.grey[600], fontSize: 15),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       );
     }
 
     return RefreshIndicator(
-      onRefresh: () async {
-        ref.read(favoriteFruitsProvider.notifier).loadFavorites();
-      },
+      color: primaryBlue,
+      onRefresh: () async => ref.read(favoriteFruitsProvider.notifier).loadFavorites(),
       child: ListView.builder(
-        padding: const EdgeInsets.all(8),
+        padding: const EdgeInsets.fromLTRB(8, 16, 8, 100),
         itemCount: favorites.length,
         itemBuilder: (context, index) {
           final fruit = favorites[index];
-          return FruitCard(
-            fruit: fruit,
-            onTap: () {
-              Navigator.push(
+          return Padding(
+            padding: const EdgeInsets.only(bottom: 12),
+            child: FruitCard(
+              fruit: fruit,
+              onTap: () => Navigator.push(
                 context,
-                MaterialPageRoute(
-                  builder: (context) => FruitDetailsScreen(fruitId: fruit.id),
-                ),
-              );
-            },
-            showFavoriteButton: true,
-            onFavoriteToggle: () {
-              ref.read(favoriteFruitsProvider.notifier).toggleFavorite(fruit.id);
-            },
+                MaterialPageRoute(builder: (_) => FruitDetailsScreen(fruitId: fruit.id)),
+              ),
+              showFavoriteButton: true,
+              onFavoriteToggle: () => ref.read(favoriteFruitsProvider.notifier).toggleFavorite(fruit.id),
+            ),
           );
         },
       ),
     );
   }
 }
-

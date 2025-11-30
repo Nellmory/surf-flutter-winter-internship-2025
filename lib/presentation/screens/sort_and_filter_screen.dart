@@ -1,4 +1,3 @@
-// presentation/screens/sort_and_filter_screen.dart
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/fruit_list_provider.dart';
