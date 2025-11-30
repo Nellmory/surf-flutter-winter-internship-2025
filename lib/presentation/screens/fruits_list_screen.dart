@@ -49,13 +49,17 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
     final state = ref.watch(fruitListProvider);
 
     return Scaffold(
+      backgroundColor: const Color(0xFFF8FAFF),
       appBar: AppBar(
-        title: const Text('Фрукты'),
+        title: const Text('Фрукты', style: TextStyle(fontWeight: FontWeight.bold)),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black87,
+        elevation: 0,
+        surfaceTintColor: Colors.transparent,
         actions: [
           IconButton(
             icon: const Icon(Icons.sort),
             onPressed: _openSortAndFilter,
-            tooltip: 'Сортировка и фильтры',
           ),
         ],
       ),
@@ -120,7 +124,7 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
                   onPressed: () async {
                     ref.invalidate(fruitListProvider);
                     await ref.read(fruitListProvider.notifier).loadFruits();
-                    _showGreenSnackBar(context, message: 'Фильтры сброшены');
+                    _showSnackBar(context, message: 'Фильтры сброшены');
                   },
                   child: const Text('Сбросить фильтры'),
                 ),
@@ -141,11 +145,11 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
         await ref.read(fruitListProvider.notifier).loadFruits();
 
         if (hasFilters && hasSort) {
-          _showGreenSnackBar(context, message: 'Фильтры и сортировка сброшены');
+          _showSnackBar(context, message: 'Фильтры и сортировка сброшены');
         } else if (hasFilters) {
-          _showGreenSnackBar(context, message: 'Фильтры сброшены');
+          _showSnackBar(context, message: 'Фильтры сброшены');
         } else if (hasSort) {
-          _showGreenSnackBar(context, message: 'Сортировка сброшена');
+          _showSnackBar(context, message: 'Сортировка сброшена');
         }
       },
       child: ListView.builder(
@@ -169,25 +173,55 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
     );
   }
 
-  void _showGreenSnackBar(BuildContext context, {required String message}) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        backgroundColor: Colors.green[700]?.withOpacity(0.75),
-        behavior: SnackBarBehavior.floating,
-        content: Text(
-          message,
-          style: const TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.w500,
+  void _showSnackBar(BuildContext context, {required String message}) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          behavior: SnackBarBehavior.floating,
+          duration: const Duration(seconds: 2),
+          margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(16),
+          ),
+          content: Container(
+            decoration: BoxDecoration(
+              color: const Color(0xFF375FAD).withOpacity(0.75),
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: const Color(0xFF375FAD).withOpacity(0.4),
+                width: 1.5,
+              ),
+              boxShadow: [
+                BoxShadow(
+                  color: const Color(0xFF375FAD).withOpacity(0.4),
+                  blurRadius: 20,
+                  spreadRadius: 2,
+                ),
+              ],
+            ),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                const Icon(Icons.check_circle, color: Colors.white, size: 20),
+                const SizedBox(width: 12),
+                Flexible(
+                  child: Text(
+                    message,
+                    style: const TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-        duration: const Duration(seconds: 2),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-      ),
-    );
+      );
   }
 }
