@@ -17,12 +17,12 @@
 -   [Автор](#автор)
 
 ## Скриншоты
-|                   Главный экран                   |                Фильтры и Сортировка                 |                     Избранное                     |
-|:-------------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|
-|  ![Главный экран](assets/screenshots/fruits.jpg)  |  ![Детали фрукта](assets/screenshots/filters.jpg)   |  ![Избранное](assets/screenshots/favorites.jpg)   |
-|                  Список рецептов                  |                 Конструктор рецепта                 |                   Детали фрукта                   |
-| :-----------------------------------------------: | :------------------------------------------------:  | :----------------------------------------------:  |
-| ![Главный экран](assets/screenshots/recipes.jpg)  | ![Детали фрукта](assets/screenshots/new-recipe.jpg) |   ![Избранное](assets/screenshots/details.jpg)    |
+|                   Главный экран                   |                 Фильтры и Сортировка                 |                     Избранное                      |
+|:-------------------------------------------------:|:----------------------------------------------------:|:--------------------------------------------------:|
+| <img src="./assets/fruits.jpg" height="200px" />  |  <img src="./assets/filters.jpg" height="200px" />   | <img src="./assets/favorits.jpg" height="200px" /> |
+|                  Список рецептов                  |                 Конструктор рецепта                  |                   Детали фрукта                    |
+| :-----------------------------------------------: |  :------------------------------------------------:  |  :----------------------------------------------:  |
+| <img src="./assets/recipes.jpg" height="200px" /> | <img src="./assets/new_recipe.jpg" height="200px" /> | <img src="./assets/details.jpg" height="200px" />  |
 
 ## Функциональность
 
@@ -51,12 +51,12 @@
 
 ## Архитектура
 
-Проект строго следует принципам **Clean Architecture**:
-lib/
-├── core/             # Общие утилиты, провайдеры, ошибки
-├── data/             # Репозитории, источники данных (API + Hive)
-├── domain/           # Модели, use cases, абстракции репозиториев
-└── presentation/     # UI: экраны, виджеты, провайдеры состояния
+Проект строго следует принципам **Clean Architecture**:<br>
+lib/<br>
+├── core/             # Общие утилиты, провайдеры, ошибки<br>
+├── data/             # Репозитории, источники данных (API + Hive)<br>
+├── domain/           # Модели, use cases, абстракции репозиториев<br>
+└── presentation/     # UI: экраны, виджеты, провайдеры состояния<br>
 
 ## Особенности реализации
 
@@ -76,7 +76,7 @@ flutter --version
 
 # 2. Склонируйте репозиторий
 git clone <ваш-репозиторий>
-cd fruity
+cd Flutter Fruits
 
 # 3. Установите зависимости
 flutter pub get
@@ -110,7 +110,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 ## Автор
 
-**Нелли Агапова** — Flutter‑разработчик
+**Нелли Агапова** — Flutter‑разработчик<br>
 Связаться:
 <code><a href="https://t.me/Hidorysen"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg"></a></code> <code><a href="mailto: agapova.nelli@gmail.com"><img height="30" src="https://static.vecteezy.com/system/resources/previews/022/613/021/non_2x/google-mail-gmail-icon-logo-symbol-free-png.png"></a></code> <code><a href="https://vk.com/nellmory"><img height="30" src="https://cdn-icons-png.freepik.com/512/15707/15707808.png?ga=GA1.1.1700754748.1740168983"></a></code>
 
