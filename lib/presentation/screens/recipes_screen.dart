@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/recipes_provider.dart';
 import '../widgets/recipe_card.dart';
 import 'create_recipe_screen.dart';
+import '../../core/constants/colors.dart';
 
 class RecipesScreen extends ConsumerStatefulWidget {
   const RecipesScreen({super.key});
@@ -12,7 +13,7 @@ class RecipesScreen extends ConsumerStatefulWidget {
 }
 
 class _RecipesScreenState extends ConsumerState<RecipesScreen> {
-  static const Color primaryBlue = Color(0xFF375FAD);
+  static const Color primaryBlue = AppColors.primaryColor;
 
   @override
   void initState() {

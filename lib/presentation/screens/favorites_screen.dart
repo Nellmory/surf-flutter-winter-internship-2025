@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/favorite_fruits_provider.dart';
 import '../widgets/fruit_card.dart';
 import 'fruit_details_screen.dart';
+import '../../core/constants/colors.dart';
 
 class FavoritesScreen extends ConsumerStatefulWidget {
   const FavoritesScreen({super.key});
@@ -12,8 +13,8 @@ class FavoritesScreen extends ConsumerStatefulWidget {
 }
 
 class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
-  static const Color primaryBlue = Color(0xFF375FAD);
-  static const Color favoriteRed = Color(0xFFD80050);
+  static const Color primaryColor = AppColors.primaryColor;
+  static const Color favoriteRed = AppColors.favoriteRed;
 
   @override
   void initState() {
@@ -47,7 +48,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
   Widget _buildBody(FavoriteFruitsState state) {
     if (state.isLoading) {
       return const Center(
-        child: CircularProgressIndicator(color: primaryBlue),
+        child: CircularProgressIndicator(color: primaryColor),
       );
     }
 
@@ -65,7 +66,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
               onPressed: () => ref.read(favoriteFruitsProvider.notifier).loadFavorites(),
               icon: const Icon(Icons.refresh),
               label: const Text('Попробовать снова'),
-              style: ElevatedButton.styleFrom(backgroundColor: primaryBlue, foregroundColor: Colors.white),
+              style: ElevatedButton.styleFrom(backgroundColor: primaryColor, foregroundColor: Colors.white),
             ),
           ],
         ),
@@ -108,7 +109,7 @@ class _FavoritesScreenState extends ConsumerState<FavoritesScreen> {
     }
 
     return RefreshIndicator(
-      color: primaryBlue,
+      color: primaryColor,
       onRefresh: () async => ref.read(favoriteFruitsProvider.notifier).loadFavorites(),
       child: ListView.builder(
         padding: const EdgeInsets.fromLTRB(8, 16, 8, 100),

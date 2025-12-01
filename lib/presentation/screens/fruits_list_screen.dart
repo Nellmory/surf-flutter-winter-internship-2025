@@ -4,6 +4,7 @@ import '../providers/fruit_list_provider.dart';
 import '../widgets/fruit_card.dart';
 import 'fruit_details_screen.dart';
 import 'sort_and_filter_screen.dart';
+import '../../core/constants/colors.dart';
 
 class FruitsListScreen extends ConsumerStatefulWidget {
   const FruitsListScreen({super.key});
@@ -13,6 +14,9 @@ class FruitsListScreen extends ConsumerStatefulWidget {
 }
 
 class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
+  static const Color primaryColor = AppColors.primaryColor;
+  static const Color favoriteRed = AppColors.favoriteRed;
+
   @override
   void initState() {
     super.initState();
@@ -128,12 +132,12 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
                   },
                   label: const Text('Сбросить фильтры', style: TextStyle(fontWeight: FontWeight.bold)),
                   style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF375FAD),
+                    backgroundColor: primaryColor,
                     foregroundColor: Colors.white,
                     padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16),
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     elevation: 10,
-                    shadowColor: const Color(0xFF375FAD).withOpacity(0.5),
+                    shadowColor: primaryColor.withOpacity(0.5),
                   ),
                 ),
               ],
@@ -196,15 +200,15 @@ class _FruitsListScreenState extends ConsumerState<FruitsListScreen> {
           ),
           content: Container(
             decoration: BoxDecoration(
-              color: const Color(0xFF375FAD).withOpacity(0.75),
+              color: primaryColor.withOpacity(0.75),
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
-                color: const Color(0xFF375FAD).withOpacity(0.4),
+                color: primaryColor.withOpacity(0.4),
                 width: 1.5,
               ),
               boxShadow: [
                 BoxShadow(
-                  color: const Color(0xFF375FAD).withOpacity(0.4),
+                  color: primaryColor.withOpacity(0.4),
                   blurRadius: 20,
                   spreadRadius: 2,
                 ),

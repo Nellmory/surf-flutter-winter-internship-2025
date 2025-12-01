@@ -1,5 +1,6 @@
-                  import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../../domain/models/recipe.dart';
+import '../../core/constants/colors.dart';
 
 class RecipeCard extends StatelessWidget {
   final Recipe recipe;
@@ -7,8 +8,8 @@ class RecipeCard extends StatelessWidget {
 
   const RecipeCard({super.key, required this.recipe, required this.onDelete});
 
-  static const Color primaryBlue = Color(0xFF375FAD);
-  static const Color favoriteRed = Color(0xFFD80050);
+  static const Color primaryColor = AppColors.primaryColor;
+  static const Color favoriteRed = AppColors.favoriteRed;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +21,9 @@ class RecipeCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
-        border: Border.all(color: primaryBlue.withOpacity(0.25), width: 1.5),
+        border: Border.all(color: primaryColor.withOpacity(0.25), width: 1.5),
         boxShadow: [
-          BoxShadow(color: primaryBlue.withOpacity(0.12), blurRadius: 20, spreadRadius: 2),
+          BoxShadow(color: primaryColor.withOpacity(0.12), blurRadius: 20, spreadRadius: 2),
         ],
       ),
       child: Padding(
@@ -58,9 +59,9 @@ class RecipeCard extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: primaryBlue.withOpacity(0.08),
+                color: primaryColor.withOpacity(0.08),
                 borderRadius: BorderRadius.circular(16),
-                border: Border.all(color: primaryBlue.withOpacity(0.3)),
+                border: Border.all(color: primaryColor.withOpacity(0.3)),
               ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,7 +90,7 @@ class RecipeCard extends StatelessWidget {
       children: [
         Row(
           children: [
-            Icon(icon, size: 18, color: primaryBlue),
+            Icon(icon, size: 18, color: primaryColor),
             const SizedBox(width: 6),
             Text(value, style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
           ],

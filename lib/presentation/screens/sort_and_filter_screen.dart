@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../providers/fruit_list_provider.dart';
+import '../../core/constants/colors.dart';
 
 class SortAndFilterScreen extends ConsumerStatefulWidget {
   const SortAndFilterScreen({super.key});
@@ -14,7 +15,8 @@ class _SortAndFilterScreenState extends ConsumerState<SortAndFilterScreen> {
   bool _sortAscending = true;
   final Set<String> _selectedFilters = {};
 
-  static const Color primaryBlue = Color(0xFF375FAD);
+  static const Color primaryColor = AppColors.primaryColor;
+  static const Color favoriteRed = AppColors.favoriteRed;
 
   final List<NutritionFilter> _predefinedFilters = [
     NutritionFilter(name: 'Завтрак', minCalories: 40, maxCalories: 80, minCarbohydrates: 10, maxSugar: 12, maxFat: 0.5),
@@ -59,12 +61,12 @@ class _SortAndFilterScreenState extends ConsumerState<SortAndFilterScreen> {
               child: ElevatedButton(
                 onPressed: _applyFilters,
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: primaryBlue,
+                  backgroundColor: primaryColor,
                   foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 18),
                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                   elevation: 0,
-                  shadowColor: primaryBlue.withOpacity(0.4),
+                  shadowColor: primaryColor.withOpacity(0.4),
                 ),
                 child: const Text('Применить', style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               ),
@@ -89,8 +91,8 @@ class _SortAndFilterScreenState extends ConsumerState<SortAndFilterScreen> {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(16),
-        border: Border.all(color: isSelected ? primaryBlue : Colors.grey[300]!, width: isSelected ? 2 : 1),
-        boxShadow: [BoxShadow(color: primaryBlue.withOpacity(isSelected ? 0.2 : 0.08), blurRadius: 12)],
+        border: Border.all(color: isSelected ? primaryColor : Colors.grey[300]!, width: isSelected ? 2 : 1),
+        boxShadow: [BoxShadow(color: primaryColor.withOpacity(isSelected ? 0.2 : 0.08), blurRadius: 12)],
       ),
       child: RadioListTile<String>(
         value: value,
@@ -107,9 +109,9 @@ class _SortAndFilterScreenState extends ConsumerState<SortAndFilterScreen> {
         },
         title: Text(label, style: const TextStyle(fontWeight: FontWeight.w600)),
         secondary: isSelected
-            ? Icon(_sortAscending ? Icons.arrow_upward : Icons.arrow_downward, color: primaryBlue)
+            ? Icon(_sortAscending ? Icons.arrow_upward : Icons.arrow_downward, color: primaryColor)
             : null,
-        activeColor: primaryBlue,
+        activeColor: primaryColor,
         contentPadding: const EdgeInsets.symmetric(horizontal: 16),
       ),
     );
@@ -125,15 +127,15 @@ class _SortAndFilterScreenState extends ConsumerState<SortAndFilterScreen> {
           selected ? _selectedFilters.add(filter.name) : _selectedFilters.remove(filter.name);
         });
       },
-      selectedColor: primaryBlue.withOpacity(0.15),
-      checkmarkColor: primaryBlue,
+      selectedColor: primaryColor.withOpacity(0.15),
+      checkmarkColor: primaryColor,
       backgroundColor: Colors.grey[50],
-      side: BorderSide(color: isSelected ? primaryBlue : Colors.grey[300]!, width: isSelected ? 2 : 1),
+      side: BorderSide(color: isSelected ? primaryColor : Colors.grey[300]!, width: isSelected ? 2 : 1),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
       labelStyle: TextStyle(fontWeight: isSelected ? FontWeight.bold : FontWeight.w500),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: isSelected ? 4 : 0,
-      shadowColor: primaryBlue.withOpacity(0.3),
+      shadowColor: primaryColor.withOpacity(0.3),
     );
   }
 

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../domain/models/fruit.dart';
 import '../providers/favorite_fruits_provider.dart';
+import '../../core/constants/colors.dart';
 
 class FruitCard extends ConsumerWidget {
   final Fruit fruit;
@@ -20,8 +21,8 @@ class FruitCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final isFavorite = ref.watch(favoriteFruitsProvider).favoriteIds.contains(fruit.id);
-    const Color accentColor = Color(0xFF375FAD);
-    const Color favoriteColor = Color(0xFFD80050);
+    const Color primaryColor = AppColors.primaryColor;
+    const Color favoriteRed = AppColors.favoriteRed;
 
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
@@ -29,12 +30,12 @@ class FruitCard extends ConsumerWidget {
         borderRadius: BorderRadius.circular(20),
         color: Colors.white,
         border: Border.all(
-          color: accentColor.withOpacity(0.3),
+          color: primaryColor.withOpacity(0.3),
           width: 1.8,
         ),
         boxShadow: [
           BoxShadow(
-            color: accentColor.withOpacity(0.15),
+            color: primaryColor.withOpacity(0.15),
             blurRadius: 20,
             spreadRadius: 2,
           ),
@@ -92,11 +93,11 @@ class FruitCard extends ConsumerWidget {
                         padding: const EdgeInsets.all(8),
                         decoration: BoxDecoration(
                           shape: BoxShape.circle,
-                          color: isFavorite ? favoriteColor.withOpacity(0.1) : Colors.grey[50],
+                          color: isFavorite ? favoriteRed.withOpacity(0.1) : Colors.grey[50],
                           boxShadow: isFavorite
                               ? [
                             BoxShadow(
-                              color: favoriteColor.withOpacity(0.3),
+                              color: favoriteRed.withOpacity(0.3),
                               blurRadius: 10,
                               spreadRadius: 1,
                             ),
@@ -105,7 +106,7 @@ class FruitCard extends ConsumerWidget {
                         ),
                         child: Icon(
                           isFavorite ? Icons.favorite : Icons.favorite_border,
-                          color: isFavorite ? favoriteColor : Colors.grey[500],
+                          color: isFavorite ? favoriteRed : Colors.grey[500],
                           size: 32,
                         ),
                       ),
@@ -120,11 +121,11 @@ class FruitCard extends ConsumerWidget {
                     Container(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
                       decoration: BoxDecoration(
-                        color: accentColor,
+                        color: primaryColor,
                         borderRadius: BorderRadius.circular(30),
                         boxShadow: [
                           BoxShadow(
-                            color: accentColor.withOpacity(0.4),
+                            color: primaryColor.withOpacity(0.4),
                             blurRadius: 10,
                             offset: const Offset(0, 3),
                           ),

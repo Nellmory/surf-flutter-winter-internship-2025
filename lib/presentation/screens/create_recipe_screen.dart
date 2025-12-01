@@ -6,6 +6,7 @@ import '../../core/providers/providers.dart';
 import '../../core/utils/result.dart';
 import '../providers/favorite_fruits_provider.dart';
 import '../providers/recipes_provider.dart';
+import '../../core/constants/colors.dart';
 
 class CreateRecipeScreen extends ConsumerStatefulWidget {
   const CreateRecipeScreen({super.key});
@@ -18,12 +19,11 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
   final Set<int> _selectedFruitIds = {};
+  static const Color primaryColor = AppColors.primaryColor;
+  static const Color favoriteRed = AppColors.favoriteRed;
   List<Fruit>? _availableFruits;
   bool _isLoading = true;
   String? _error;
-
-  static const Color primaryBlue = Color(0xFF375FAD);
-  static const Color favoriteRed = Color(0xFFD80050);
 
   @override
   void initState() {
@@ -118,7 +118,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
           'Рецепт сохранён!',
           style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
         ),
-        backgroundColor: primaryBlue,
+        backgroundColor: primaryColor,
         behavior: SnackBarBehavior.floating,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         margin: const EdgeInsets.all(16),
@@ -151,7 +151,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
             child: const Text(
               'Готово',
               style: TextStyle(
-                color: primaryBlue,
+                color: primaryColor,
                 fontSize: 17,
                 fontWeight: FontWeight.bold,
               ),
@@ -160,7 +160,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
         ],
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: primaryBlue))
+          ? const Center(child: CircularProgressIndicator(color: primaryColor))
           : _error != null
           ? Center(
               child: Column(
@@ -183,7 +183,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                     icon: const Icon(Icons.refresh),
                     label: const Text('Повторить'),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: primaryBlue,
+                      backgroundColor: primaryColor,
                     ),
                   ),
                 ],
@@ -248,13 +248,13 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                             borderRadius: BorderRadius.circular(20),
                             border: Border.all(
                               color: isSelected
-                                  ? primaryBlue
-                                  : primaryBlue.withOpacity(0.25),
+                                  ? primaryColor
+                                  : primaryColor.withOpacity(0.25),
                               width: isSelected ? 2.2 : 1.6,
                             ),
                             boxShadow: [
                               BoxShadow(
-                                color: primaryBlue.withOpacity(
+                                color: primaryColor.withOpacity(
                                   isSelected ? 0.25 : 0.12,
                                 ),
                                 blurRadius: isSelected ? 20 : 12,
@@ -284,11 +284,11 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                                       decoration: BoxDecoration(
                                         shape: BoxShape.circle,
                                         color: isSelected
-                                            ? primaryBlue
+                                            ? primaryColor
                                             : Colors.transparent,
                                         border: Border.all(
                                           color: isSelected
-                                              ? primaryBlue
+                                              ? primaryColor
                                               : Colors.grey[400]!,
                                           width: 2.5,
                                         ),
@@ -315,7 +315,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                                               fontSize: 19,
                                               fontWeight: FontWeight.w800,
                                               color: isSelected
-                                                  ? primaryBlue
+                                                  ? primaryColor
                                                   : Colors.black87,
                                             ),
                                           ),
@@ -325,7 +325,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                                             style: TextStyle(
                                               fontSize: 15,
                                               color: isSelected
-                                                  ? primaryBlue.withOpacity(0.8)
+                                                  ? primaryColor.withOpacity(0.8)
                                                   : Colors.grey[600],
                                             ),
                                           ),
@@ -340,8 +340,8 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                                       ),
                                       decoration: BoxDecoration(
                                         color: isSelected
-                                            ? primaryBlue
-                                            : primaryBlue.withOpacity(0.1),
+                                            ? primaryColor
+                                            : primaryColor.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(30),
                                       ),
                                       child: Row(
@@ -351,7 +351,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                                             size: 18,
                                             color: isSelected
                                                 ? Colors.white
-                                                : primaryBlue,
+                                                : primaryColor,
                                           ),
                                           const SizedBox(width: 6),
                                           Text(
@@ -361,7 +361,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                                               fontWeight: FontWeight.bold,
                                               color: isSelected
                                                   ? Colors.white
-                                                  : primaryBlue,
+                                                  : primaryColor,
                                             ),
                                           ),
                                         ],
@@ -382,14 +382,14 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
                     child: ElevatedButton(
                       onPressed: _saveRecipe,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: primaryBlue,
+                        backgroundColor: primaryColor,
                         foregroundColor: Colors.white,
                         padding: const EdgeInsets.symmetric(vertical: 18),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18),
                         ),
                         elevation: 10,
-                        shadowColor: primaryBlue.withOpacity(0.5),
+                        shadowColor: primaryColor.withOpacity(0.5),
                       ),
                       child: const Text(
                         'Сохранить рецепт',
@@ -429,7 +429,7 @@ class _CreateRecipeScreenState extends ConsumerState<CreateRecipeScreen> {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(16),
-          borderSide: const BorderSide(color: primaryBlue, width: 2),
+          borderSide: const BorderSide(color: primaryColor, width: 2),
         ),
         contentPadding: const EdgeInsets.symmetric(
           horizontal: 20,

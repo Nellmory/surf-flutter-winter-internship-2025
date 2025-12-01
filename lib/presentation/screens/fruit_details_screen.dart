@@ -4,6 +4,7 @@ import '../../domain/models/fruit.dart';
 import '../../core/providers/providers.dart';
 import '../../core/utils/result.dart';
 import '../providers/favorite_fruits_provider.dart';
+import '../../core/constants/colors.dart';
 
 class FruitDetailsScreen extends ConsumerStatefulWidget {
   final int fruitId;
@@ -18,8 +19,8 @@ class _FruitDetailsScreenState extends ConsumerState<FruitDetailsScreen> {
   bool _isLoading = true;
   String? _error;
 
-  static const Color primaryBlue = Color(0xFF375FAD);
-  static const Color favoriteRed = Color(0xFFD80050);
+  static const Color primaryColor = AppColors.primaryColor;
+  static const Color favoriteRed = AppColors.favoriteRed;
 
   @override
   void initState() {
@@ -105,7 +106,7 @@ class _FruitDetailsScreenState extends ConsumerState<FruitDetailsScreen> {
         ],
       ),
       body: _isLoading
-          ? const Center(child: CircularProgressIndicator(color: primaryBlue))
+          ? const Center(child: CircularProgressIndicator(color: primaryColor))
           : _error != null
           ? _buildErrorState()
           : _buildContent(),
@@ -128,7 +129,7 @@ class _FruitDetailsScreenState extends ConsumerState<FruitDetailsScreen> {
             onPressed: _loadFruit,
             icon: const Icon(Icons.refresh),
             label: const Text('Повторить'),
-            style: ElevatedButton.styleFrom(backgroundColor: primaryBlue, foregroundColor: Colors.white),
+            style: ElevatedButton.styleFrom(backgroundColor: primaryColor, foregroundColor: Colors.white),
           ),
         ],
       ),
@@ -157,9 +158,9 @@ class _FruitDetailsScreenState extends ConsumerState<FruitDetailsScreen> {
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(24),
-              border: Border.all(color: primaryBlue.withOpacity(0.3), width: 2),
+              border: Border.all(color: primaryColor.withOpacity(0.3), width: 2),
               boxShadow: [
-                BoxShadow(color: primaryBlue.withOpacity(0.15), blurRadius: 25),
+                BoxShadow(color: primaryColor.withOpacity(0.15), blurRadius: 25),
               ],
             ),
             child: Column(
@@ -167,7 +168,7 @@ class _FruitDetailsScreenState extends ConsumerState<FruitDetailsScreen> {
               children: [
                 const Text(
                   'Питательные свойства',
-                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: primaryBlue),
+                  style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: primaryColor),
                 ),
                 const SizedBox(height: 24),
 
@@ -212,7 +213,7 @@ class _FruitDetailsScreenState extends ConsumerState<FruitDetailsScreen> {
   Widget _nutritionRow(String label, String value, IconData icon) {
     return Row(
       children: [
-        Icon(icon, color: primaryBlue, size: 28),
+        Icon(icon, color: primaryColor, size: 28),
         const SizedBox(width: 16),
         Expanded(
           child: Text(label, style: const TextStyle(fontSize: 17)),
