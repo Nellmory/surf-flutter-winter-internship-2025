@@ -21,12 +21,12 @@
 
 | Главный экран                                  | Фильтры и сортировка                                  | Избранное                                           |
 |:----------------------------------------------:|:-----------------------------------------------------:|:--------------------------------------------------:|
-| <img src="assets/screenshots/fruits.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/filters.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/favorites.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(216,0,80,0.2);"/> |
+| <img src="../../assets/screenshots/fruits.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="../../assets/screenshots/filters.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="../../assets/screenshots/favorites.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(216,0,80,0.2);"/> |
 | **Список фруктов**                             | **Умные фильтры и сортировка**                        | **Ваше избранное — всегда под рукой**              |
 
 | Мои рецепты                                    | Создание рецепта                                      | Детали фрукта                                       |
 |:----------------------------------------------:|:-----------------------------------------------------:|:--------------------------------------------------:|
-| <img src="assets/screenshots/recipes.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/new_recipe.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/details.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> |
+| <img src="../../assets/screenshots/recipes.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="../../assets/screenshots/new_recipe.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="../../assets/screenshots/details.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> |
 | **Автоматический подсчёт нутриентов**          | **Только из избранных фруктов**                       | **Полная научная информация**                      |
 
 ## Функциональность
