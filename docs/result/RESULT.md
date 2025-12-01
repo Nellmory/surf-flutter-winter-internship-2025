@@ -17,12 +17,17 @@
 -   [Автор](#автор)
 
 ## Скриншоты
-|                           Главный экран                            |                         Фильтры и Сортировка                         |                              Избранное                              |
-|:------------------------------------------------------------------:|:--------------------------------------------------------------------:|:-------------------------------------------------------------------:|
-| <img src="../../assets/screenshots/fruits.jpg" height="200px" />   | <img src="../../assets/screenshots/filters.jpg" height="200px" />    | <img src="../../assets/screenshots/favorits.jpg" height="200px" />  |
-|                          Список рецептов                           |                         Конструктор рецепта                          |                            Детали фрукта                            |
-|         :-----------------------------------------------:          |          :------------------------------------------------:          |          :----------------------------------------------:           |
-| <img src="../../assets/screenshots/recipes.jpg" height="200px" />  | <img src="../../assets/screenshots/new_recipe.jpg" height="200px" /> |  <img src="../../assets/screenshots/details.jpg" height="200px" />  |
+## Скриншоты
+
+| Главный экран                                  | Фильтры и сортировка                                  | Избранное                                           |
+|:----------------------------------------------:|:-----------------------------------------------------:|:--------------------------------------------------:|
+| <img src="assets/screenshots/fruits.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/filters.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/favorites.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(216,0,80,0.2);"/> |
+| **Список фруктов**                             | **Умные фильтры и сортировка**                        | **Ваше избранное — всегда под рукой**              |
+
+| Мои рецепты                                    | Создание рецепта                                      | Детали фрукта                                       |
+|:----------------------------------------------:|:-----------------------------------------------------:|:--------------------------------------------------:|
+| <img src="assets/screenshots/recipes.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/new_recipe.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="assets/screenshots/details.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> |
+| **Автоматический подсчёт нутриентов**          | **Только из избранных фруктов**                       | **Полная научная информация**                      |
 
 ## Функциональность
 
@@ -111,6 +116,6 @@ flutter pub run build_runner build --delete-conflicting-outputs
 ## Автор
 
 **Нелли Агапова** — Flutter‑разработчик<br>
-Связаться:
+**Связаться:**
 <code><a href="https://t.me/Hidorysen"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg"></a></code> <code><a href="mailto: agapova.nelli@gmail.com"><img height="30" src="https://static.vecteezy.com/system/resources/previews/022/613/021/non_2x/google-mail-gmail-icon-logo-symbol-free-png.png"></a></code> <code><a href="https://vk.com/nellmory"><img height="30" src="https://cdn-icons-png.freepik.com/512/15707/15707808.png?ga=GA1.1.1700754748.1740168983"></a></code>
 
