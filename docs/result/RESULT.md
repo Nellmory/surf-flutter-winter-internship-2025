@@ -28,12 +28,12 @@
 | <img src="../../assets/screenshots/recipes.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="../../assets/screenshots/new_recipe.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> | <img src="../../assets/screenshots/details.jpg" width="280" style="border-radius:20px; box-shadow: 0 10px 30px rgba(55,95,173,0.25);"/> |
 | **Автоматический подсчёт нутриентов**          | **Только из избранных фруктов**                       | **Полная научная информация**                      |
 
-[Видео-демонстрация работы приложения](https://drive.google.com/file/d/18JgaS4afJhy8vd17KcIhAb1kMTwL0oCQ/view?usp=sharing)
+[Видео-демонстрация работы приложения](https://drive.google.com/file/d/1hLeJOZPYlex8tsIohKmDM_G5huf-g7UI/view?usp=drivesdk)
 
 ## Функциональность
 
 - Просмотр полного списка фруктов из публичного API [FruityVice](https://www.fruityvice.com)
-- Гибкая сортировка по названию и калорийности
+- Гибкая сортировка по названию и калорийности (по возрастанию/убыванию)
 - Умная фильтрация по питательным профилям: «Завтрак», «Тренировка», «Сытость», «Перекус», «Диета»
 - Локальное избранное с мгновенной синхронизацией
 - Детальная карточка фрукта с таксономией и полными нутриентами
