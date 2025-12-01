@@ -105,17 +105,70 @@ class RecipeCard extends StatelessWidget {
     showDialog(
       context: context,
       builder: (_) => AlertDialog(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-        title: const Text('Удалить рецепт?'),
-        content: Text('Рецепт "${recipe.name}" будет удалён навсегда.'),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+        backgroundColor: Colors.white,
+        elevation: 0,
+        shadowColor: favoriteRed.withOpacity(0.3),
+        surfaceTintColor: Colors.transparent,
+        title: Row(
+          children: [
+            Container(
+              padding: const EdgeInsets.all(8),
+              decoration: BoxDecoration(
+                color: favoriteRed.withOpacity(0.15),
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.delete_outline, color: favoriteRed, size: 28),
+            ),
+            const SizedBox(width: 12),
+            const Text(
+              'Удалить рецепт?',
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+            ),
+          ],
+        ),
+        content: Text(
+          '«${recipe.name}» будет удалён навсегда.\nЭто действие нельзя отменить.',
+          style: TextStyle(color: Colors.grey[700], fontSize: 15),
+        ),
+        actionsPadding: const EdgeInsets.fromLTRB(24, 0, 24, 20),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Отмена')),
-          TextButton(
-            onPressed: () {
-              Navigator.pop(context);
-              onDelete();
-            },
-            child: const Text('Удалить', style: TextStyle(color: favoriteRed)),
+          SizedBox(
+            width: double.infinity,
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.pop(context);
+                onDelete();
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: favoriteRed,
+                foregroundColor: Colors.white,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                elevation: 8,
+                shadowColor: favoriteRed.withOpacity(0.5),
+              ),
+              child: const Text(
+                'Удалить навсегда',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+            ),
+          ),
+          const SizedBox(height: 8),
+          SizedBox(
+            width: double.infinity,
+            child: TextButton(
+              onPressed: () => Navigator.pop(context),
+              style: TextButton.styleFrom(
+                padding: const EdgeInsets.symmetric(vertical: 14),
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+                backgroundColor: Colors.grey[100],
+              ),
+              child: Text(
+                'Отмена',
+                style: TextStyle(color: Colors.grey[700], fontWeight: FontWeight.w600),
+              ),
+            ),
           ),
         ],
       ),
