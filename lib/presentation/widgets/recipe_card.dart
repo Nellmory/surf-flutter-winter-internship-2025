@@ -17,7 +17,7 @@ class RecipeCard extends StatelessWidget {
     final fruitNames = recipe.fruits?.map((f) => f.name).join(', ') ?? 'Фрукты загружаются...';
 
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),

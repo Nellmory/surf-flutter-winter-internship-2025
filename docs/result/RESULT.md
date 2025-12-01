@@ -5,16 +5,24 @@
 
 Приложение построено с акцентом на производительность, чистую архитектуру и премиальный пользовательский опыт.
 
-<img src="https://via.placeholder.com/1200x600/375FAD/FFFFFF?text=Fruity+%E2%80%94+Премиум+дизайн+2025" alt="Fruity Preview" />
-
 ## Содержание
+-   [Скриншоты](#скриншоты)
 -   [Функциональность](#функциональность)
--   [Технологический стек](#Технологический_стек)
--   [Архитектура](#Архитектура)
--   [Особенности реализации](#Особенности_реализации)
--   [Установка и запуск](#Установка_и_запуск)
--   [Генерация кода](#Генерация_кода)
--   [API](#API)
+-   [Технологический стек](#технологический-стек)
+-   [Архитектура](#архитектура)
+-   [Особенности реализации](#особенности-реализации)
+-   [Установка и запуск](#установка-и-запуск)
+-   [Генерация кода](#генерация-кода)
+-   [API](#api)
+-   [Автор](#автор)
+
+## Скриншоты
+|                   Главный экран                   |                Фильтры и Сортировка                 |                     Избранное                     |
+|:-------------------------------------------------:|:---------------------------------------------------:|:-------------------------------------------------:|
+|  ![Главный экран](assets/screenshots/fruits.jpg)  |  ![Детали фрукта](assets/screenshots/filters.jpg)   |  ![Избранное](assets/screenshots/favorites.jpg)   |
+|                  Список рецептов                  |                 Конструктор рецепта                 |                   Детали фрукта                   |
+| :-----------------------------------------------: | :------------------------------------------------:  | :----------------------------------------------:  |
+| ![Главный экран](assets/screenshots/recipes.jpg)  | ![Детали фрукта](assets/screenshots/new-recipe.jpg) |   ![Избранное](assets/screenshots/details.jpg)    |
 
 ## Функциональность
 
@@ -99,3 +107,10 @@ flutter pub run build_runner build --delete-conflicting-outputs
 - **Источник**: https://www.fruityvice.com
 - **Эндпоинт**: `GET https://www.fruityvice.com/api/fruit/all`
 - **Документация**: https://www.fruityvice.com/doc/index.html
+
+## Автор
+
+**Нелли Агапова** — Flutter‑разработчик
+Связаться:
+<code><a href="https://t.me/Hidorysen"><img height="30" src="https://upload.wikimedia.org/wikipedia/commons/8/83/Telegram_2019_Logo.svg"></a></code> <code><a href="mailto: agapova.nelli@gmail.com"><img height="30" src="https://static.vecteezy.com/system/resources/previews/022/613/021/non_2x/google-mail-gmail-icon-logo-symbol-free-png.png"></a></code> <code><a href="https://vk.com/nellmory"><img height="30" src="https://cdn-icons-png.freepik.com/512/15707/15707808.png?ga=GA1.1.1700754748.1740168983"></a></code>
+
